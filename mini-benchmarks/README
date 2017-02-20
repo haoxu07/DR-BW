@@ -1,0 +1,26 @@
+=========================
+Mini Benchmarks
+=========================
+
+
+Four mini-benchmarks can be run in different NUMA memory policy. numactl can be utilized to do different memory binding. 
+
+
+ 
+=========================
+Building
+=========================
+
+For sumv,dotv,countv, Array Size and NTIMES are specified during building:
+
+	cd DR-BW/mini-benchmarks/benchmark/
+	gcc -g -O2 -fopenmp -DSTREAM_ARRAY_SIZE=VALUE -DNTIMES=VALUE benchmark.c  -o benchmark
+
+For Bandit: 
+
+        cd DR-BW/mini-benchmarks
+        gcc -g -O2 -c help.c
+        gcc -g -O2 -c bandit_malloc.c
+        gcc -g -O2 help.o bandit.o -o bandit_malloc
+
+The usage is: bandit_malloc #STREAM #STRIDE #MAGIC.

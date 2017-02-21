@@ -1,0 +1,4 @@
+1. Codes of profiler are in tools/PAPIBandDignose/, it requires the installation of PAPI and libmonitor, You need to specify the the PAPI and libmonitor directory at the begining of the Makefile
+
+
+2. Code of data preprocessing are in tools/dataCleaning, you may need to specify sampling result file at the beginning of the code.

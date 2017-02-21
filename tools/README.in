@@ -1,4 +1,7 @@
-1. Codes of profiler are in tools/PAPIBandDignose/, it requires the installation of PAPI and libmonitor, You need to specify the the PAPI and libmonitor directory at the begining of the Makefile
+1. Code of profiler is in tools/PAPIBandDignose/, it requires the installation of PAPI and libmonitor, You need to specify the the PAPI and libmonitor directory at the begining of the Makefile
 
 
-2. Code of data preprocessing are in tools/dataCleaning, you may need to specify sampling result file at the beginning of the code.
+2. Code of data preprocessing is in tools/dataCleaning, you may need to specify sampling result file at the beginning of the code.
+
+
+3. Code of Supervised Machine Learning is in tools/ML, you may need to change the data prepare part to run the code. And you also need to adjust some coefficients.  

@@ -177,17 +177,6 @@ struct ThreadAffinity{
     int threadR;
     int count;
 
-    /*bool operator==(const ThreadAffinity& x) const{
-       if(this->count == x.count)
-          return true;
-       return false;
-    }
-
-    bool operator<(const ThreadAffinity& x) const{
-       if(this->count < x.count)
-          return true;
-       return false;
-    }*/
 }; 
 
 __thread int mallocFlag = 0;
@@ -400,13 +389,6 @@ void *MONITOR_EXT_WRAP_NAME(malloc)(size_t size){
        return ptr;
     }else{
 
-       /*if(mallocInter[threadid][mallocID]==1){
-          //interleave the memory
-          void *ptr = real_malloc(size);
-          mallocFlag = 0;
-          return ptr;
-       }
-       mallocID++;*/
        void *ptr = real_malloc(size);
        mallocFlag = 0;
        return ptr;
@@ -434,20 +416,12 @@ void *MONITOR_EXT_WRAP_NAME(calloc)(size_t nmemb, size_t size){
 	  PRINT_STACK_FLAG = 0;
 	  print_stack(threadid, mallocIdx, ptr, nmemb*size);
 	  PRINT_STACK_FLAG = 1;
-	  //printf("calloc==> mallocIdx:%d, threadid:%d, size:%d\n", mallocIdx, threadid, nmemb*size);
 	  mallocIdx++;
        }
        mallocID++;
        mallocFlag = 0;
        return ptr;
     }else{
-       /*if(mallocInter[threadid][mallocID]==1){
-          //interleave the memory
-          void *ptr = (*real_calloc)(nmemb,size);
-          mallocFlag = 0;
-          return ptr;
-       }
-       mallocID++;*/
        void *ptr = (*real_calloc)(nmemb,size);
        mallocFlag = 0;
        return ptr;
@@ -468,7 +442,6 @@ void *MONITOR_EXT_WRAP_NAME(realloc)(void *ptr, size_t size){
 	  PRINT_STACK_FLAG = 0;
 	  print_stack(threadid, mallocIdx, nptr, size);
           PRINT_STACK_FLAG = 1;
-	  //printf("realloc==> mallocIdx:%d, threadid:%d, size:%d\n", mallocIdx, threadid, size);
 	  mallocIdx++;
        }
        mallocID++;
@@ -476,13 +449,6 @@ void *MONITOR_EXT_WRAP_NAME(realloc)(void *ptr, size_t size){
        return nptr;
     }else{
 
-       /*if(mallocInter[threadid][mallocID]==1){
-          //interleave the memory
-          void *nptr = real_realloc(ptr,size);
-          mallocFlag = 0;
-          return nptr;
-       }
-       mallocID++;*/
        void *nptr = real_realloc(ptr,size);
        mallocFlag = 0;
        return nptr;
@@ -508,13 +474,6 @@ void *MONITOR_EXT_WRAP_NAME(memalign)(size_t blocksize, size_t bytes){
        mallocFlag = 0;
        return ptr;
     }else{
-       /*if(mallocInter[threadid][mallocID]==1){
-          //interleave the memory
-          void *ptr = (real_memalign)(blocksize, bytes);
-          mallocFlag = 0;
-          return ptr;
-       }
-       mallocID++;*/
        void *ptr = (real_memalign)(blocksize, bytes);
        mallocFlag = 0;
        return ptr;
@@ -535,20 +494,12 @@ void *MONITOR_EXT_WRAP_NAME(valloc)(size_t size){
 	  PRINT_STACK_FLAG = 0;
 	  print_stack(threadid, mallocIdx, ptr, size);
 	  PRINT_STACK_FLAG = 1;
-	  //printf("valloc==> mallocIdx:%d, threadid:%d, size:%d\n", mallocIdx, threadid, size);
 	  mallocIdx++;
        }
        mallocID++;
        mallocFlag = 0;
        return ptr;
     }else{
-       /*if(mallocInter[threadid][mallocID]==1){
-          //interleave the memory
-          void *ptr = (real_valloc)(size);
-          mallocFlag = 0;
-          return ptr;
-       }
-       mallocID++;*/
        void *ptr = (real_valloc)(size);
        mallocFlag = 0;
        return ptr;
